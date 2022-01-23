@@ -9,14 +9,14 @@ const Container2 = () => {
 };
 const Container = () => {
   return (
-    <>
+    <div className="body">
       <ListenMouseover>
-        <div className="body">
-          <Container1 />
-          <Container2 />
-        </div>
+        <Container1 />
       </ListenMouseover>
-    </>
+      <ListenMouseover listen={false}>
+        <Container2 />
+      </ListenMouseover>
+    </div>
   );
 };
 

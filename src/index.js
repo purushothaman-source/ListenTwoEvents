@@ -15,7 +15,7 @@ const ListenKeyDown = ({ children }) => {
   }, []);
   return <>{children}</>;
 };
-export const ListenMouseover = ({ children, ...props }) => {
+export const ListenMouseover = ({ children, listen = true, ...props }) => {
   const [mouseOvered, setMouseOvered] = useState(false);
   return (
     <div
@@ -26,7 +26,11 @@ export const ListenMouseover = ({ children, ...props }) => {
         setMouseOvered(false);
       }}
     >
-      {mouseOvered ? <ListenKeyDown>{children}</ListenKeyDown> : children}
+      {mouseOvered && listen ? (
+        <ListenKeyDown>{children}</ListenKeyDown>
+      ) : (
+        children
+      )}
     </div>
   );
 };
