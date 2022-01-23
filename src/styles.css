@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.body {
+  width: auto;
+  height: 100vh;
+  display: flex;
+}
+.container1 {
+  flex-grow: 1;
+  background: chartreuse;
+}
+.container2 {
+  flex-grow: 1;
+  background: crimson;
+}

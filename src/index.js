@@ -1,17 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { useEffect, useState } from "react";
+import Container from "./container";
+import React from "react";
+import ReactDOM from "react-dom";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const ListenKeyDown = ({ children }) => {
+  const handleKeyDown = e => {
+    console.log(e.key);
+    alert(e.key);
+  };
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+  return <>{children}</>;
+};
+export const ListenMouseover = ({ children, ...props }) => {
+  const [mouseOvered, setMouseOvered] = useState(false);
+  return (
+    <div
+      onMouseOver={() => {
+        setMouseOvered(true);
+      }}
+      onMouseLeave={() => {
+        setMouseOvered(false);
+      }}
+    >
+      {mouseOvered ? <ListenKeyDown>{children}</ListenKeyDown> : children}
+    </div>
+  );
+};
+
+ReactDOM.render(<Container />, document.getElementById("root"));
